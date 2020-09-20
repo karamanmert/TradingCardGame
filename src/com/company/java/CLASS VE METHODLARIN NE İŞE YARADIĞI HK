@@ -1,0 +1,34 @@
+GameSettings classının amacı deck ,maxMana,health ,handSize,penalty gibi değerler ilerde değiştirilmek istenirse buradan ayarlanabilsin diye.
+ör:Oyun kurallarında health 30 du ama belki ilerde 40 50 olur.
+Player classının amacı oyuncuları oluşturmak ve değerlerine erişmek.
+Game classının amacı ise genel tüm fonksiyonlarımızı burada yazmak. Oyunu bu classta oynatmak.
+
+activePlayer: sırası gelen player.
+passivePlayer: activePlayerin elini bitirmesini bekleyen, bitirdikten sonra activePlayer olacak playerdır.
+
+
+Game classındaki methodlar:
+
+startGame(): Oyunu başlatır. isGameOn=true olduğu sürece oyunu oynatır.
+
+initPlayers(): active ve passive playerlar initPlayer methodunu kullanılarak set edilir.
+
+initPlayer(String playerName): Player oluşturulur. destesi set edilir. destesi karıştırılır. handine 3 eleman eklenir.
+void draw():deck boş değilse card çekilir ve handi gameSettings.getHandSize(5)'dan küçükse o card handine eklenir.
+aksi durumda discard edilir.
+deck boşsa kartı çeken oyuncu (activePlayer) gameSettings.getPenalty(1) kadar hasar yer.
+
+damage(Player player, int damage): Player canı int damage kadar azalır.
+
+playerCheck(Player player): Playerin oyunu oynamak için yeterli canı olup olmadıgına bakar.
+Oyunun bitip bitmediğini de kontrol eder.
+
+endGame(Player loser): Oyunu bitirir. Kazanan oyuncunun ismini yazar.
+
+changeTurn(): activePlayer passive, passivePlayer active olur. kart çekip mana yeniler.
+
+refresh(): totalMana'yı gameSettings.getMaxMana() yı geçmeyecek şekilde 1 arttırır ve
+kalan manayı totalMana'ya eşitler.
+
+playCard(int index): oyuncunun seçtiği indexteki kartı oynatır.
+
